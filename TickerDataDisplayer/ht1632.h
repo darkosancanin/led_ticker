@@ -30,12 +30,19 @@ public:
   void send_command(uint8_t command);
   void write_bits(uint8_t bits, uint8_t firstBit);
   void scroll_text();
+  void set_buffer(char chr);
+  void null_buffer();
+  void set_text(char text[]);
+  void replace_char(char letter, uint16_t pos, uint16_t total_chars);
   
 private:
   uint8_t data_pin;
   uint8_t write_clock_pin;
   uint8_t chip_select_pin;
-  
+  int16_t start_char_column_index;
+  int16_t total_chars;
+  char text[512];
+  char current_char_buffer[8][8];
 };
 
 #endif
